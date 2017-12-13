@@ -1,60 +1,70 @@
 USE GIFT;
 
+DROP TABLE users;
+DROP TABLE classes_first;
+DROP TABLE classes_second;
+DROP TABLE products;
+
 CREATE TABLE users
 (
-        user_id INT UNSIGNED AUTO_INCREMENT,
-        PRIMARY KEY (user_id)
+user_id INT UNSIGNED AUTO_INCREMENT,
+PRIMARY KEY (user_id)
 );
 
 CREATE TABLE classes_first
 (
-        class_id TINYINT UNSIGNED AUTO_INCREMENT,
-        class_name varchar(16) NOT NULL,
+id TINYINT UNSIGNED AUTO_INCREMENT,
+name varchar(16) NOT NULL,
 
-        PRIMARY KEY (class_id)
+PRIMARY KEY (id)
 )CHARSET=utf8;
 
 
 CREATE TABLE classes_second
 (
-        first_id TINYINT UNSIGNED NOT NULL, 
-        class_id TINYINT UNSIGNED AUTO_INCREMENT,
-        class_name varchar(16) NOT NULL,
+f_id TINYINT UNSIGNED NOT NULL, 
+id TINYINT UNSIGNED AUTO_INCREMENT,
+name varchar(16) NOT NULL,
 
-        PRIMARY KEY (class_id),
-        CONSTRAINT class_first_id FOREIGN KEY (first_id) REFERENCES classes_first (class_id)
+PRIMARY KEY (id),
+CONSTRAINT c_s_fkey FOREIGN KEY (f_id) REFERENCES classes_first (id)
 )CHARSET=utf8;
 
 
 CREATE TABLE products
 (
-        class_id TINYINT UNSIGNED NOT NULL,
+s_id TINYINT UNSIGNED NOT NULL,
 
-        product_id INT UNSIGNED AUTO_INCREMENT,
-        product_name varchar(64) NOT NULL,
+id INT UNSIGNED AUTO_INCREMENT,
 
-        level TINYINT CHECK (gender IN (1,2,3,4,5,6,7,8,9)),
-        price SMALLINT UNSIGNED NOT NULL,
-        collect_number SMALLINT UNSIGNED,
-        commentaries text,
+name varchar(64) NOT NULL,
+level TINYINT CHECK (gender IN (1,2,3,4,5,6,7,8,9)),
+price SMALLINT UNSIGNED NOT NULL,
+collect_number SMALLINT UNSIGNED,
+commentaries text,
 
-        PRIMARY KEY (product_id),
-        CONSTRAINT class_second_id FOREIGN KEY (class_id) REFERENCES classes_second (class_id)
+PRIMARY KEY (id),
+CONSTRAINT p_fkey FOREIGN KEY (s_id) REFERENCES classes_second (id)
 )CHARSET=utf8;
 
 
-INSERT INTO classes_first(class_name)
+
+
+INSERT INTO classes_first(name)
 VALUES
 ('电子产品'),
 ('化妆品'),
 ('书籍');
 
-INSERT INTO classes_second(first_id,class_name)
+INSERT INTO classes_second(f_id,name)
 VALUES
-(1,'手机'),
-(1,'电脑'),
-(2,'口红');
+((SELECT f.id
+FROM classes_first f
+WHERE f.name = '电子产品'),'手机'),
+((SELECT f.id
+FROM classes_first f
+WHERE f.name = '电子产品'),'电脑'),
+((SELECT f.id
+FROM classes_first f
+WHERE f.name = '化妆品'),'口红');
 
-INSERT INTO products (class_id,product_name,level,price,collect_number)
-VALUES
-(1,'华为p10',8,5000,5000);

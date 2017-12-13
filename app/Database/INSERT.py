@@ -1,28 +1,41 @@
-import pymysql
-from config import Connect_MYSQL
+from Database import Connect_MYSQL
 
-xs = Connect_MYSQL()
-db = xs.create_c()
+dbs = Connect_MYSQL()
 
-class operation_mysql:
-    def __init__(self,db):
-        self.db = db
+def INSERT_prouduct(class_id,\
+        product_id,\
+        product_name,\
+        level,\
+        price,\
+        collect_number,\
+        commentaries,\
+        db=dbs):
 
-    def INSERT(self,table_name,data_name=None,data=None):
-        c = self.db.cursor()
-        sql = "INSERT INTO classes_first(class_name)VALUES('ss')"
-        print (sql)
-        try:
-            print ('1')
-            c.execute (sql)
-            print ('2')
-            c.commit()
-            print ('3')
-            return 0
-        except:
-            db.rollback()
-            return 1
+    c = db.cursor()
 
-xx= operation_mysql(db)
-print (xx.INSERT('classes_first','class_name','ss'))
-db.close()
+    sql = '''INSERT products\
+            (class_id,\
+            product_id,\
+            product_name,\
+            level,\
+            price,\
+            collect_number,\
+            commentaries)\
+            VALUES\
+            (%d,%d,'%s',%d,%d,%d,'%s')'''%\
+            (class_id,\
+            product_id,\
+            product_name,\
+            level,\
+            price,\
+            collect_number,\
+            commentaries)
+
+    try:
+        c.execute (sql)
+        r =c.fetchall()
+    except:
+        return False
+
+    return True
+    

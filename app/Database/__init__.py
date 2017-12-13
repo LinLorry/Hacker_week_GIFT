@@ -2,10 +2,10 @@ import pymysql
 
 def Connect_MYSQL():
     
-    __host = 'localhost'
+    __host = 'host'
     __user = 'username'
     __pasw = 'password'
-    __database = 'tablename'
+    __database = 'GIFT'
 
     return pymysql.connect (host=__host,\
             user=__user,\

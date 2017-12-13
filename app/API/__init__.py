@@ -2,5 +2,5 @@ from flask import Blueprint
 
 API = Blueprint('API',__name__)
 
-from . import test_api,ima
+from . import g_api,ima
 
