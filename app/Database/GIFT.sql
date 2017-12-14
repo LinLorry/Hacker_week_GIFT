@@ -1,10 +1,5 @@
 USE GIFT;
 
-DROP TABLE users;
-DROP TABLE classes_first;
-DROP TABLE classes_second;
-DROP TABLE products;
-
 CREATE TABLE users
 (
 user_id INT UNSIGNED AUTO_INCREMENT,
@@ -35,7 +30,7 @@ CREATE TABLE products
 (
 s_id TINYINT UNSIGNED NOT NULL,
 
-id INT UNSIGNED AUTO_INCREMENT,
+id FLOAT UNSIGNED AUTO_INCREMENT,
 
 name varchar(64) NOT NULL,
 level TINYINT CHECK (gender IN (1,2,3,4,5,6,7,8,9)),
@@ -51,13 +46,13 @@ CONSTRAINT p_fkey FOREIGN KEY (s_id) REFERENCES classes_second (id)
 
 
 INSERT INTO classes_first(name)
-VALUES
+VALUE
 ('电子产品'),
 ('化妆品'),
 ('书籍');
 
 INSERT INTO classes_second(f_id,name)
-VALUES
+VALUE
 ((SELECT f.id
 FROM classes_first f
 WHERE f.name = '电子产品'),'手机'),
@@ -66,5 +61,11 @@ FROM classes_first f
 WHERE f.name = '电子产品'),'电脑'),
 ((SELECT f.id
 FROM classes_first f
-WHERE f.name = '化妆品'),'口红');
+WHERE f.name = '电子产品'),'耳机')，
+((SELECT f.id
+FROM classes_first f
+WHERE f.name = '化妆品'),'口红'),
+((SELECT f.id
+FROM classes_first f
+WHERE f.name = '化妆品'),'护肤品');
 
