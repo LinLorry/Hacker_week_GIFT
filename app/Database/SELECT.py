@@ -21,13 +21,13 @@ def give_all(table_name,db=dbs):
 def class_first_all (class_name,db=dbs):
     c= db.cursor()
     sql = '''SELECT\
-            s.class_name\
+            s.name\
             FROM classes_second s\
-            WHERE s.first_id=\
+            WHERE s.f_id=\
             (SELECT\
-            class_id\
+            id\
             FROM classes_first\
-            WHERE class_name='%s')''' %\
+            WHERE name='%s')''' %\
             (class_name)
     print (sql)
     c.execute(sql)
@@ -44,14 +44,14 @@ def class_first_all (class_name,db=dbs):
 def class_second_all (class_name,db=dbs):
     c = db.cursor()
     sql = '''SELECT\
-            p.product_name name,\
+            p.name name,\
             p.level\
             FROM products p\
-            WHERE p.class_id =\
+            WHERE p.s_id =\
             (SELECT\
-            class_id\
+            id\
             FROM classes_second\
-            WHERE class_name='%s')'''% \
+            WHERE name='%s')'''% \
             (class_name)
     print (sql)
     c.execute(sql)
@@ -70,7 +70,7 @@ def product_all (product_name,db=dbs):
     c = db.cursor()
     
     sql = '''SELECT\
-            p.product_name,\
+            p.name,\
             p.level,\
             p.price,\
             p.collect_number,\
@@ -122,14 +122,14 @@ def image_name(class_name,name,db=dbs):
 
     return d
 
-def give_c_id(product_name,db = dbs):
+def give_c_id(class_name,db = dbs):
     c= db.cursor()
-    sql='''SELECT p.s_id\
-            FROM products p\
-            WHERE p.name = '%s' '''%\
-            (product_name)
+    sql='''SELECT s.id\
+            FROM classes_second s\
+            WHERE s.name = '%s' '''%\
+            (class_name)
     c.execute(sql)
     r = c.fetchall()
-    r = r[0]['s_id']
+    r = r[0]['id']
 
     return r

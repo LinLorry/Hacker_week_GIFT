@@ -1,10 +1,9 @@
-from Database import Connect_MYSQL
+from . import Connect_MYSQL
 
 dbs = Connect_MYSQL()
 
 def INSERT_prouduct(class_id,\
-        product_id,\
-        product_name,\
+        name,\
         level,\
         price,\
         collect_number,\
@@ -14,28 +13,28 @@ def INSERT_prouduct(class_id,\
     c = db.cursor()
 
     sql = '''INSERT products\
-            (class_id,\
-            product_id,\
-            product_name,\
+            (s_id,\
+            name,\
             level,\
             price,\
             collect_number,\
             commentaries)\
             VALUES\
-            (%d,%d,'%s',%d,%d,%d,'%s')'''%\
+            (%d,'%s',%d,%d,%d,'%s')'''%\
             (class_id,\
-            product_id,\
-            product_name,\
+            name,\
             level,\
             price,\
             collect_number,\
             commentaries)
-
-    try:
-        c.execute (sql)
-        r =c.fetchall()
-    except:
-        return False
-
-    return True
+    print (sql)
+    c.execute (sql)
+    x=db.commit()
+    print (x)
+    r =c.fetchall()
+    print ("3")
     
+    return 0
+
+
+
