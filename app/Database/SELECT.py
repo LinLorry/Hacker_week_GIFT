@@ -38,7 +38,7 @@ def class_first_all (class_name,db=dbs):
     d={}
     for n in list(range(len(r))):
         key ='class_'+str(n+1)
-        d[key]= r[n]['class_name']
+        d[key]= r[n]['name']
     return d
 
 def class_second_all (class_name,db=dbs):
@@ -76,7 +76,7 @@ def product_all (product_name,db=dbs):
             p.collect_number,\
             p.commentaries\
             FROM products p\
-            WHERE p.product_name='%s' ''' %\
+            WHERE p.name='%s' ''' %\
             (product_name)
     print (sql)
     c.execute(sql)

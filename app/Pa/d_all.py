@@ -11,6 +11,7 @@ class tb:
         r = requests.get(url)
         ss = re.match(r'(\n\n.*)\((.*)\)(.*)',r.text)
         ss = ss.group(2)
+        print (ss)
         js = json.loads(ss)
     
         for jo in js['API.CustomizedApi']['itemlist']['auctions']:

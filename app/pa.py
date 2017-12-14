@@ -48,6 +48,6 @@ print ('collect:%d'%p_c)
 print ('com:%s'%p_co)
 
 INSERT.INSERT_prouduct(c_id,p_n,p_l,p_p,p_c,p_co)
-p = SELECT.product_all(p_n)
-print (p['product_name'])
+#p = SELECT.product_all(p_n)
+#print (p['product_name'])
 

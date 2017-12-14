@@ -11,17 +11,19 @@ def pand_u(url):
 
 def get_price(p):
     sum_p=0
-    p=re.match('(.*) \- (.*)',p)
-    if (p==None):
+    pd=re.match('(.*) \- (.*)',p)
+    if (pd==None):
         sum_p=float(p)
+        return sum_p
     else :
-        l=[float(p.group(1)),float(p.group(2))]
-    return pai(l)
+        l=[float(pd.group(1)),float(pd.group(2))]
+        return pai(l)
 
 def pai(l):
 
     if type(l) != type (list()):
         return l
+
     sum_p=0
     aver_p =l[0]
     a = len (l)
