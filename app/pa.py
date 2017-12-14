@@ -8,8 +8,8 @@ from Pa import gong,d_all
 #获取产品名字，评价,等级以及api路由
 p_n = input ("input the name:")
 p_l = int(input("level:"))
-p_co = input("input the commentaries:")
 c_n = input ('input the classname:')
+p_co = input("input the commentaries:")
 #p_n = '华为P10'
 c_id = SELECT.give_c_id(c_n)
 #print (c_id)
