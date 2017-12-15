@@ -3,6 +3,7 @@ from flask import Flask,request,Response,make_response
 from werkzeug.datastructures import Headers
 from . import API
 from ..Database import SELECT
+import random
 
 @API.route('/<class_name>/',methods=['GET'])
 def g_s_classes(class_name):
@@ -15,6 +16,15 @@ def g_s_classes(class_name):
 @API.route('/<class_first_name>/<class_second_name>/',methods=['GET'])
 def g_c_products(class_first_name,class_second_name):
     r=SELECT.class_second_all(class_second_name)
+    
+    l = random.randint(1,3)
+    m = random.randint(4,6)
+    t = random.randint(7,9)
+
+    r['level_low']=r['leve_'+str(l)]
+    r['level_middle']=r['level_'+str(m)]
+    r['level_top']=r['level_'+str(t)]
+
     all_p_name = json.dumps(r)
     print (all_p_name)
     return all_p_name

@@ -9,7 +9,9 @@ class tb:
         p_url = []
 
         r = requests.get(url)
-        ss = re.match(r'(\n\n.*)\((.*)\)(.*)',r.text)
+        r = r.text.replace('\n','')
+        r = r.replace(' ','')
+        ss = re.match(r'(.*)\((.*)\)(.*)',r)
         ss = ss.group(2)
         js = json.loads(ss)
     
@@ -66,7 +68,8 @@ class tm:
         p_all = []
         c = self.b.find('script',text=re.compile("TShop.Setup"))
 
-        s=re.split('\n+',c.get_text())
+        s = c.get_text().replace('\n','')
+        s = s.replace(' ','')
         c=re.match(r'(.*)valItemInfo\"\:(.*\}\}\})',str(s))
         jo = json.loads(c.group(2))
 
@@ -82,4 +85,24 @@ class tm:
         f = re.match(r'.*\((\d*)\).*',f)
         print (f.group(1))
         return f.group(1)
+
+    def i(self):
+        f = self.b.find('script',text=re.compile("TShop.Setup"))
+        
+        f = f.get_text().replace('\n','')
+        f = f.replace(' ','')
+        print (f)
+        f = re.match(r'.*?propertyPics.*?(\"default\".*?)\}.*',f)
+        f ='{'+f.group(1)+'}'
+        print (f)
+        jo = json.loads(f)
+        i_u=[]
+        for n in jo['default']:
+            url = 'http:'+n
+            print (url)
+            i_u.append(url)
+        
+        return i_u
+
+
 
