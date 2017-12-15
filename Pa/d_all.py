@@ -1,4 +1,4 @@
-import re,json,requests
+import re,json,requests,demjson
 from . import gong
 
 class tb:
@@ -11,7 +11,6 @@ class tb:
         r = requests.get(url)
         ss = re.match(r'(\n\n.*)\((.*)\)(.*)',r.text)
         ss = ss.group(2)
-        print (ss)
         js = json.loads(ss)
     
         for jo in js['API.CustomizedApi']['itemlist']['auctions']:
@@ -31,10 +30,37 @@ class tb:
         print (f.group(1))
         return f.group(1)
 
+    def i(self):
+        f = self.b.find ('script',text=re.compile("auctionImages"))
+
+        f = f.get_text()
+        f = f.replace("\n","")
+        f = f.replace(" ","")
+        
+        #f = re.match(r'.*idata.*?item.*?(\{.*?\}.*?\}).*',f)
+        #f = re.match(r'(.*)disableAddToCart.*?\:.*?\,(.*)',f.group(1))
+        f = re.match(r'.*(auctionImages.*?)\}.*',f)
+        f = '{'+f.group(1)+'}'
+        
+        
+        jo=demjson.decode(f)
+        print (jo)
+        
+        
+        i_u=[]
+        for u in jo['auctionImages']:
+            url = 'http:'+u
+            i_u.append(url)
+        
+        return i_u
+
 class tm:
 
     def __init__(self,b):
         self.b=b
+
+    def g_u(url):
+        pass
 
     def p(self):
         p_all = []

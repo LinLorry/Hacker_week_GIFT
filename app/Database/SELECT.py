@@ -88,40 +88,6 @@ def product_all (product_name,db=dbs):
         
     return d
 
-def image_name(class_name,name,db=dbs):
-    c= db.cursor()
-    sql =  '''SELECT\
-            i.image_id\
-            FROM products_images i\
-            WHERE i.class_id=\
-            (SELECT\
-            class_id\
-            FROM classes_second WHERE\
-            class_name='%s')
-            AND i.product_id=\
-            (SELECT\
-            product_id\
-            FROM products WHERE\
-            product_name='%s')'''% \
-            (class_name,name)
-    print (sql)
-    c.execute (sql)
-    r = c.fetchall()
-      
-    if r == ():
-        return False
-
-    d ={}
-    for n in list (range(len(r))):
-        key = 'image_'+str(n+1)
-        d[key]=url_for ('static',\
-                _external=True,\
-                filename='Images/'\
-                +str(r[n]['image_id'])+'.jpg')
-        
-
-    return d
-
 def give_c_id(class_name,db = dbs):
     c= db.cursor()
     sql='''SELECT s.id\
@@ -133,3 +99,15 @@ def give_c_id(class_name,db = dbs):
     r = r[0]['id']
 
     return r
+
+def g_p_id(product_name,db=dbs):
+    c = db.cursor()
+    sql = '''SELECT p.id\
+            FROM products p
+            WHERE p.name = '%s' '''%\
+            (product_name)
+    c.execute(sql)
+    r = c.fetchall()
+    return r[0]['id']
+
+

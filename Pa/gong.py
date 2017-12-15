@@ -48,6 +48,7 @@ def pai(l):
 def p_all(p_url):
     p_a = []
     for url in p_url:
+        n = 1
         print ('--------------------------------------')
         print ('url:%s'%url)
 
@@ -63,7 +64,7 @@ def p_all(p_url):
         else:
             p=None
             continue
-
+        
         print ('price:%f'%p.p())
         #print ('collect:%d'%p.c())
         p_a.append(p)
