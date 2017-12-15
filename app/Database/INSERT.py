@@ -6,8 +6,6 @@ def INSERT_prouduct(class_id,\
         name,\
         level,\
         price,\
-        collect_number,\
-        commentaries,\
         db=dbs):
 
     c = db.cursor()
@@ -16,23 +14,17 @@ def INSERT_prouduct(class_id,\
             (s_id,\
             name,\
             level,\
-            price,\
-            collect_number,\
-            commentaries)\
+            price)\
             VALUES\
-            (%d,'%s',%d,%d,%d,'%s')'''%\
+            (%d,'%s',%d,%d)'''%\
             (class_id,\
             name,\
             level,\
-            price,\
-            collect_number,\
-            commentaries)
+            price)
     print (sql)
     c.execute (sql)
+    c.close()
     x=db.commit()
-    print (x)
-    r =c.fetchall()
-    print ("3")
     
     return 0
 

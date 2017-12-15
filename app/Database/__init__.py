@@ -14,5 +14,3 @@ def Connect_MYSQL():
             db=__database,\
             cursorclass = pymysql.cursors.DictCursor,\
             charset='utf8')
-
-

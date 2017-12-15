@@ -1,9 +1,9 @@
 USE GIFT;
 
 DROP TABLE users;
-DROP TABLE classes_first;
-DROP TABLE classes_second;
 DROP TABLE products;
+DROP TABLE classes_second;
+DROP TABLE classes_first;
 
 CREATE TABLE users
 (
@@ -28,14 +28,14 @@ name varchar(16) NOT NULL,
 
 j_standard text,
 
-top_preface varchar,
-top_title varchar,
+top_preface varchar(256),
+top_title varchar(64),
 
-medium_preface varchar,
-medium_title varchar,
+medium_preface varchar(256),
+medium_title varchar(64),
 
-low_preface varchar,
-low_title varchar,
+low_preface varchar(256),
+low_title varchar(64),
 
 
 PRIMARY KEY (id),
@@ -52,7 +52,7 @@ id SMALLINT UNSIGNED AUTO_INCREMENT,
 name varchar(64) NOT NULL,
 level TINYINT CHECK (gender IN (1,2,3,4,5,6,7,8,9)),
 price FLOAT UNSIGNED NOT NULL,
-title varchar,
+title varchar(64),
 commentaries text,
 
 PRIMARY KEY (id),
@@ -134,20 +134,19 @@ VALUES
 FROM classes_first f
 WHERE f.name = '化妆品'),
 '口红',
-'',
 "{
 'first':'1.	在市场定位上，高端口红的品牌形象定调为奢华，社会上层女性是它们的目标客户；中端口红的品牌形象是“奢侈品中较为亲民的单品”，目标客户为追求品质生活的中产阶级女性以及广大爱美的女学生；普通口红的品牌形象为大众、亲民，市场定位为质量较好的“开架化妆品”。',
 'second':'2.在使用效果上，高端口红的滋润度、显色度、保湿度均为顶尖，而中端口红略差一些，普通口红相较之下则表现得更为一般。',
 'third':'3.	在价格上，高端口红的单价一般都在500RMB以上一支，中端大致为200~400RMB一支，普通口红则为几十元到一百多不等。',
 'fourth':'4.在外观设计上，高端口红一般有着奢华、精心雕琢的外观，中端口红的外观则是充满设计感，而普通口红的外观则显得更加简洁、平淡。'
 }",
-'',
+' ',
 "一个爱美的女孩，永远都缺一支昂贵的口红。
 不为其他，那支口红本身，就承载了许多
 也许是独立，也许是宠溺
 但不管怎么样，都是女孩们努力打造自身的写照
 想要博得美人一笑？那可千万别错过下面三款口红",
-'',
+' ',
 "有什么是一支口红解决不了的
 如果有
 那就两支
@@ -155,7 +154,7 @@ WHERE f.name = '化妆品'),
 我偏偏中意你呢？
 不说啦，我还要给她挑口红呢
 ",
-'',
+' ',
 "一逛逛一天
 一吃一大碗
 一洗一大桶

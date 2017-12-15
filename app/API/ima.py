@@ -1,13 +1,15 @@
-from flask import url_for,request,abort
+from flask import url_for,request,abort,jsonify
 from . import API
 from ..Database import SELECT
 import json,os
 
 @API.route('/images/', methods=['POST'])
 def get_qrcode():
-    data = request.get_data()
-    print (data)
-    data = json.loads(data)
+    class_name = request.form.get('class_name')
+    name = request.form.get('name')
+    data = {}
+    data['class_name']=class_name
+    data['name']=name
     print (data['class_name'])
     print (data['name'])
     if (data['class_name'] == None\
@@ -30,7 +32,6 @@ def get_qrcode():
         i_url[key]=url
         n=n+1
 
-    i_url = json.dumps(i_url)
+    #i_url = json.dumps(i_url)
 
-    return i_url
-
+    return jsonify(i_url)

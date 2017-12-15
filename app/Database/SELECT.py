@@ -5,7 +5,7 @@ import re
 
 dbs = Connect_MYSQL()
 
-def give_all(table_name,db=dbs):
+def give_all(table_name,db=Connect_MYSQL()):
     c = db.cursor()
 
     sql = ("SELECT * FROM %s" % (table_name))
@@ -16,12 +16,20 @@ def give_all(table_name,db=dbs):
 
     for s in r:
         print (s)
+    #db.close()
     return r
 
-def class_first_all (class_name,db=dbs):
+def class_first_all (class_name,db=Connect_MYSQL()):
     c= db.cursor()
     sql = '''SELECT\
-            s.name\
+            s.name,\
+            s.j_standard,\
+            s.top_preface,\
+            s.top_title,\
+            s.medium_preface,\
+            s.medium_title,\
+            s.low_preface,\
+            s.low_title\
             FROM classes_second s\
             WHERE s.f_id=\
             (SELECT\
@@ -29,22 +37,21 @@ def class_first_all (class_name,db=dbs):
             FROM classes_first\
             WHERE name='%s')''' %\
             (class_name)
-    print (sql)
     c.execute(sql)
     r = c.fetchall()
-    print (r)
     if r ==():
         return False
     d={}
     for n in list(range(len(r))):
         key ='class_'+str(n+1)
-        d[key]= r[n]['name']
+        d[key]= r[n]
+    c.close()
     return d
 
-def class_second_all (class_name,db=dbs):
+def class_second_all (class_name,db=Connect_MYSQL()):
     c = db.cursor()
     sql = '''SELECT\
-            p.name name,\
+            p.name,\
             p.level\
             FROM products p\
             WHERE p.s_id =\
@@ -63,17 +70,17 @@ def class_second_all (class_name,db=dbs):
     for n in list(range(len(r))):
         key = 'level_'+str(r[n]['level'])
         d[key]=r[n]['name']
-
+    #db.close()
     return d
 
-def product_all (product_name,db=dbs):
+def product_all (product_name,db=Connect_MYSQL()):
     c = db.cursor()
     
     sql = '''SELECT\
             p.name,\
             p.level,\
             p.price,\
-            p.collect_number,\
+            p.title,\
             p.commentaries\
             FROM products p\
             WHERE p.name='%s' ''' %\
@@ -85,10 +92,10 @@ def product_all (product_name,db=dbs):
         return False
     
     d=r[0]
-        
+    #db.close()
     return d
 
-def give_c_id(class_name,db = dbs):
+def give_c_id(class_name,db=Connect_MYSQL()):
     c= db.cursor()
     sql='''SELECT s.id\
             FROM classes_second s\
@@ -97,19 +104,24 @@ def give_c_id(class_name,db = dbs):
     c.execute(sql)
     r = c.fetchall()
     r = r[0]['id']
-
+    #db.close()
+    
     return r
 
-def g_p_id(product_name,db=dbs):
+def g_p_id(product_name,db=Connect_MYSQL()):
     c = db.cursor()
     sql = '''SELECT p.id\
             FROM products p
             WHERE p.name = '%s' '''%\
             (product_name)
     c.execute(sql)
+    print (c.rowcount)
     r = c.fetchall()
     if r == ():
         print (r)
+    c.close()
+    db.close()
     return r[0]['id']
+
 
 

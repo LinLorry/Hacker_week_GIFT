@@ -7,15 +7,14 @@ from Pa import gong,d_all
   
 f = open('./static/all_url.txt')
 r=1
-while r != None:
-    r = f.readline().replace("\n","")
-    p_n=r
+while f.readline()!= None:
+    p_n = f.readline().replace("\n","")
     print (p_n)
-    r =f.readline().replace("\n","")
-    c_n =r
+    p_l = int(f.readline().replace("\n",""))
+    print (p_l)
+    c_n =f.readline().replace("\n","")
     print (c_n)
-    r =f.readline().replace("\n","")
-    url =r
+    url =f.readline().replace("\n","")
     print (url)
     #获取产品名字，评价,等级以及api路由
     #p_n = input ("input the name:")
@@ -35,19 +34,22 @@ while r != None:
         p_p.append(p_o.p())
 
     print ("----------------------------------------")
-    p_p = gong.pai(p_p)
-    print ('class_id:%d'%c_id)
+    #p_p = gong.pai(p_p)
+    #print ('class_id:%d'%c_id)
     print ('name:%s'%p_n)
-    print ('pricce:%f'%p_p)
- #print ('collect:%d'%p_c)
- #print ('com:%s'%p_co)
+    #print ('pricce:%f'%p_p)
+    #print ('collect:%d'%p_c)
+    #print ('com:%s'%p_co)
  
-#INSERT.INSERT_prouduct(c_id,p_n,p_l,p_p,p_c,p_co)
+    #INSERT.INSERT_prouduct(c_id,p_n,p_l,p_p)
+    
     p_id = SELECT.g_p_id(p_n)
+    
     try:
         os.mkdir(os.path.join('.','static','Images',c_n))
     except:
         pass
+    
     for p_o in p_a:
         i_u = p_o.i()
         for u in i_u:
@@ -56,6 +58,9 @@ while r != None:
             print (u)
             path=os.path.join('.','static','Images',c_n,name)
             print(path)
+            
             urllib.request.urlretrieve(u,path)
             n=n+1
- 
+       
+
+f.close()
