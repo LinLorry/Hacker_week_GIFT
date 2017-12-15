@@ -3,8 +3,8 @@ import pymysql
 
 def Connect_MYSQL():
     
-    __host = 'host'
-    __user = 'user'
+    __host = 'localhost'
+    __user = 'root'
     __pasw = 'password'
     __database = 'GIFT'
 

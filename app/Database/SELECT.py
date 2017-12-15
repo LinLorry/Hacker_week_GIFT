@@ -61,7 +61,7 @@ def class_second_all (class_name,db=dbs):
    
     d ={}
     for n in list(range(len(r))):
-        key = 'leve_'+str(r[n]['level'])
+        key = 'level_'+str(r[n]['level'])
         d[key]=r[n]['name']
 
     return d
@@ -108,6 +108,8 @@ def g_p_id(product_name,db=dbs):
             (product_name)
     c.execute(sql)
     r = c.fetchall()
+    if r == ():
+        print (r)
     return r[0]['id']
 
 

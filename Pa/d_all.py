@@ -46,8 +46,6 @@ class tb:
         
         
         jo=demjson.decode(f)
-        print (jo)
-        
         
         i_u=[]
         for u in jo['auctionImages']:
@@ -91,15 +89,12 @@ class tm:
         
         f = f.get_text().replace('\n','')
         f = f.replace(' ','')
-        print (f)
         f = re.match(r'.*?propertyPics.*?(\"default\".*?)\}.*',f)
         f ='{'+f.group(1)+'}'
-        print (f)
         jo = json.loads(f)
         i_u=[]
         for n in jo['default']:
             url = 'http:'+n
-            print (url)
             i_u.append(url)
         
         return i_u

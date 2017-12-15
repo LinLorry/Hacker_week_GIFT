@@ -50,12 +50,12 @@ while r != None:
         pass
     for p_o in p_a:
         i_u = p_o.i()
-    for u in i_u:
-        hou = re.match('.*(\..*)',u)
-        name = str(int(p_id))+'_'+str(n)+hou.group(1)
-        print (u)
-        path=os.path.join('.','static','Images',c_n,name)
-        print(path)
-        urllib.request.urlretrieve(u,path)
-        n=n+1
+        for u in i_u:
+            hou = re.match('.*(\..*)',u)
+            name = str(int(p_id))+'_'+str(n)+hou.group(1)
+            print (u)
+            path=os.path.join('.','static','Images',c_n,name)
+            print(path)
+            urllib.request.urlretrieve(u,path)
+            n=n+1
  

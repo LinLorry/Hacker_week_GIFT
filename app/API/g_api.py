@@ -20,8 +20,7 @@ def g_c_products(class_first_name,class_second_name):
     l = random.randint(1,3)
     m = random.randint(4,6)
     t = random.randint(7,9)
-
-    r['level_low']=r['leve_'+str(l)]
+    r['level_low']=r['level_'+str(l)]
     r['level_middle']=r['level_'+str(m)]
     r['level_top']=r['level_'+str(t)]
 
