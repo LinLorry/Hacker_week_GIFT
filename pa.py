@@ -46,23 +46,22 @@ while f.readline() != "":
     
     p_p=gong.pai(p_p)
 
+    d_path = os.path.join('.','static','Images',c_n)
     try:
-        d_path = os.path.join('.','static','Images',c_n)
         os.mkdir(d_path)
     except:
         pass
 
-    path = os.path.join ('.','static','Images',c_n)
     if x==1:
         INSERT.INSERT_prouduct(c_id,p_n,p_l,p_p['H_price'],p_p['L_price'])
-        fi = open (os.path.join(path,p_n+'.txt'),'a')
+        fi = open (os.path.join(d_path,p_n+'.txt'),'a')
         for p_o in p_a:
             i_a = p_o.i()
             for o in i_a:
                 fi.write(o+'\n')
     else:
         p_id = SELECT.g_p_id(p_n)
-        fi = open (os.path.join(p_n+'.txt'),'r')
+        fi = open (os.d_path.join(d_path,p_n+'.txt'),'r')
         for url in fi.readlines():
             try :
                 url = url.replace("\n","")
@@ -71,7 +70,7 @@ while f.readline() != "":
             print (url)
             hou = re.match('.*(\..*)',url)
             name = str(int(p_id))+'_'+str(n)+hou.group(1)
-            path=os.path.join(path,name)
+            path=os.path.join(d_path,name)
             print (path)
             urllib.request.urlretrieve(url,path)
             n=n+1
