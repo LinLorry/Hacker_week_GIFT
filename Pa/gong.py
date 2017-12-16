@@ -11,9 +11,9 @@ def pand_u(url):
 
 def get_price(p):
     p = p.replace(" ","")
-    pd=re.match('(.*) \- (.*)',p)
+    pd=re.match('(.*)\-(.*)',p)
     if (pd==None):
-        return float(pd)
+        return float(p)
     else :
         d = {"H_price":float(pd.group(2)),"L_price":float(pd.group(1))}
         return d

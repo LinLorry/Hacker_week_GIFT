@@ -65,6 +65,8 @@ while f.readline() != "":
         for url in fi.readlines():
             try :
                 url = url.replace("\n","")
+            except:
+                pass
             print (url)
             hou = re.match('.*(\..*)',url)
             name = str(int(p_id))+'_'+str(n)+hou.group(1)

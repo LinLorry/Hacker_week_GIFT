@@ -51,9 +51,8 @@ id SMALLINT UNSIGNED AUTO_INCREMENT,
 
 name varchar(64) NOT NULL,
 level TINYINT CHECK (gender IN (1,2,3,4,5,6,7,8,9)),
-H_price FLOAT UNSIGNED,
-L_price FLOAT UNSIGNED,
-price FLOAT UNSIGNED NOT NULL,
+H_price FLOAT UNSIGNED NOT NULL,
+L_price FLOAT UNSIGNED NOT NULL,
 title varchar(64),
 commentaries text,
 

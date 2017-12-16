@@ -22,8 +22,11 @@ class tb:
 
     def p(self):
         f = self.b.find('em',class_='tb-rmb-num')
-        p = f.replace(" ","")
-        pd=re.match('(.*) \- (.*)',p)
+        try:
+            p = f.replace(" ","")
+        except:
+            pass
+        pd=re.match('(.*)\-(.*)',p)
         if (pd==None):
             return float(pd)
         else :
@@ -46,8 +49,13 @@ class tb:
         
         #f = re.match(r'.*idata.*?item.*?(\{.*?\}.*?\}).*',f)
         #f = re.match(r'(.*)disableAddToCart.*?\:.*?\,(.*)',f.group(1))
-        f = re.match(r'.*(auctionImages.*?)\}.*',f)
-        f = '{'+f.group(1)+'}'
+        
+        h = re.match(r'.*(auctionImages.*?)\}.*',f)
+        try:
+            f = '{'+h.group(1)+'}'
+        except:
+            print (h)
+            return 0
         
         
         jo=demjson.decode(f)
