@@ -5,26 +5,25 @@ dbs = Connect_MYSQL()
 def INSERT_prouduct(class_id,\
         name,\
         level,\
-        price,\
+        H_price,\
+        L_price,\
         db=dbs):
 
     c = db.cursor()
 
     sql = '''INSERT products\
-            (s_id,\
-            name,\
-            level,\
-            price)\
+            (s_id,name,level,H_price,L_price)\
             VALUES\
-            (%d,'%s',%d,%d)'''%\
+            (%d,'%s',%d,%d,%d)'''%\
             (class_id,\
             name,\
             level,\
-            price)
-    print (sql)
+            H_price,\
+            L_price)
+
     c.execute (sql)
     c.close()
-    x=db.commit()
+    db.commit()
     
     return 0
 

@@ -11,7 +11,7 @@ class tb:
         r = requests.get(url)
         r = r.text.replace('\n','')
         r = r.replace(' ','')
-        ss = re.match(r'(.*)\((.*)\)(.*)',r)
+        ss = re.match(r'(.*?)\((.*)\)(.*)',r)
         ss = ss.group(2)
         js = json.loads(ss)
     
@@ -22,9 +22,14 @@ class tb:
 
     def p(self):
         f = self.b.find('em',class_='tb-rmb-num')
-        f = gong.get_price(f.text)
-        f = gong.pai(f)
-        return f
+        p = f.replace(" ","")
+        pd=re.match('(.*) \- (.*)',p)
+        if (pd==None):
+            return float(pd)
+        else :
+            d = {"H_price":float(pd.group(2)),"L_price":float(pd.group(1))}
+            return d
+        
 
     def c(self):
         f = self.b.find ('','')
@@ -55,7 +60,6 @@ class tb:
         return i_u
 
 class tm:
-
     def __init__(self,b):
         self.b=b
 

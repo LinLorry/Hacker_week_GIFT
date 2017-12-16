@@ -10,22 +10,20 @@ def pand_u(url):
         return 1
 
 def get_price(p):
-    sum_p=0
+    p = p.replace(" ","")
     pd=re.match('(.*) \- (.*)',p)
     if (pd==None):
-        sum_p=float(p)
-        return sum_p
+        return float(pd)
     else :
-        l=[float(pd.group(1)),float(pd.group(2))]
-        return pai(l)
+        d = {"H_price":float(pd.group(2)),"L_price":float(pd.group(1))}
+        return d
 
 def pai(l):
 
     if type(l) != type (list()):
-        return l
+        return float(l)
 
-    sum_p=0
-    aver_p =l[0]
+    sum_p = 0
     a = len (l)
 
     for one in l:
@@ -34,16 +32,20 @@ def pai(l):
     aver_p=sum_p/a
     sum_p=0
 
+    L_p=aver_p
+    H_p=aver_p
     for n in list (range (a)):
         if l[n]<aver_p-aver_p/10:
             a=a-1
             continue
-        sum_p = sum_p+l[n]
-
-
-    aver_p=sum_p/a
-
-    return aver_p
+        if L_P>l[n]:
+            l_P=l[n]
+        if H_P<l[n]:
+            H_P=l[n]
+    
+    d = {"H_price":float(pd.group(2)),"L_price":float(pd.group(1))}
+        
+    return d
         
 def p_all(p_url):
     p_a = []
@@ -65,12 +67,13 @@ def p_all(p_url):
             p=None
             continue
         
-        print ('price:%f'%p.p())
-        #print ('collect:%d'%p.c())
         p_a.append(p)
 
     return p_a
 
+def fen(l):
+    if type(l) != type (list()):
+        return l
 
 
 
