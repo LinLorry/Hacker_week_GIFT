@@ -63,9 +63,6 @@ def p_all(p_url):
             p=d_all.tb(b)
         elif pd == 1:
             p=d_all.tm(b)
-        else:
-            p=None
-            continue
         
         p_a.append(p)
 
