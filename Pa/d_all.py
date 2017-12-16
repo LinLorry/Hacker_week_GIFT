@@ -50,14 +50,14 @@ class tb:
         #f = re.match(r'.*idata.*?item.*?(\{.*?\}.*?\}).*',f)
         #f = re.match(r'(.*)disableAddToCart.*?\:.*?\,(.*)',f.group(1))
         
-        h = re.match(r'.*(auctionImages.*?)\}.*',f)
+        r = re.match(r'.*(auctionImages.*?)\}.*',f)
         try:
-            f = '{'+h.group(1)+'}'
+            z = '{'+r.group(1)+'}'s
         except:
-            print (h)
+            z = f
             return 0
         
-        
+        print (z)
         jo=demjson.decode(f)
         
         i_u=[]
@@ -101,9 +101,13 @@ class tm:
         
         f = f.get_text().replace('\n','')
         f = f.replace(' ','')
-        f = re.match(r'.*?propertyPics.*?(\"default\".*?)\}.*',f)
-        f ='{'+f.group(1)+'}'
-        jo = json.loads(f)
+        r = re.match(r'.*?propertyPics.*?(\"default\".*?)\}.*',f)
+        try:
+            z ='{'+r.group(1)+'}'
+        except:
+            z = f
+        print (z)
+        jo = json.loads(z)
         i_u=[]
         for n in jo['default']:
             url = 'http:'+n

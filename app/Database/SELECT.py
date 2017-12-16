@@ -68,7 +68,7 @@ def give_s_class(class_name,db=Connect_MYSQL()):
     c.close()
     return d'''
 
-def g_p_j (class_name,db = Connect_MYSQL):
+def g_p_j (class_second_name,db = Connect_MYSQL):
     c = db.cursor()
     sql = '''SELECT\
             p.name,\
@@ -79,7 +79,7 @@ def g_p_j (class_name,db = Connect_MYSQL):
             id\
             FROM classes_second\
             WHERE name='%s')'''% \
-            (class_name)
+            (class_second_name)
 
     c.execute(sql)
     r = c.fetchall()

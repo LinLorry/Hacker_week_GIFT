@@ -40,7 +40,7 @@ def pai(l):
             continue
         if L_p>l[n]:
             L_p=l[n]
-        if H_P<l[n]:
+        if H_p<l[n]:
             H_p=l[n]
     
     d = {"H_price":float(H_p),"L_price":float(L_p)}
