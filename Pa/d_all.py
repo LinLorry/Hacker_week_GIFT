@@ -26,7 +26,7 @@ class tb:
             p = p.replace(" ","")
         except:
             p = p.get_text()
-        pd=re.match('(.*)\-(.*)',p)
+        pd=re.match(r'(.*)\-(.*)',p)
         if (pd==None):
             return float(p)
         else :
@@ -45,20 +45,17 @@ class tb:
 
         f = f.get_text()
         f = f.replace("\n","")
-        f = f.replace(" ","")
-        
-        #f = re.match(r'.*idata.*?item.*?(\{.*?\}.*?\}).*',f)
-        #f = re.match(r'(.*)disableAddToCart.*?\:.*?\,(.*)',f.group(1))
+        f = f.replace(" ","")      
         
         r = re.match(r'.*(auctionImages.*?)\}.*',f)
         try:
-            z = '{'+r.group(1)+'}'s
+            z = '{'+r.group(1)+'}'
         except:
-            z = f
-            return 0
-        
+            i_u=[]
+            return i_u       
+  
         print (z)
-        jo=demjson.decode(f)
+        jo=demjson.decode(z)
         
         i_u=[]
         for u in jo['auctionImages']:
@@ -105,7 +102,8 @@ class tm:
         try:
             z ='{'+r.group(1)+'}'
         except:
-            z = f
+            u_r=[]
+            return u_r
         print (z)
         jo = json.loads(z)
         i_u=[]

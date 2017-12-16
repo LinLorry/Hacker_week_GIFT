@@ -52,9 +52,10 @@ while f.readline() != "":
     except:
         pass
 
+    path = os.path.join ('.','static','Images',c_n)
     if x==1:
         INSERT.INSERT_prouduct(c_id,p_n,p_l,p_p['H_price'],p_p['L_price'])
-        fi = open (os.path.join(p_n+'.txt'),'a')
+        fi = open (os.path.join(path,p_n+'.txt'),'a')
         for p_o in p_a:
             i_a = p_o.i()
             for o in i_a:
@@ -70,7 +71,7 @@ while f.readline() != "":
             print (url)
             hou = re.match('.*(\..*)',url)
             name = str(int(p_id))+'_'+str(n)+hou.group(1)
-            path=os.path.join('.','static','Images',c_n,name)
+            path=os.path.join(path,name)
             print (path)
             urllib.request.urlretrieve(url,path)
             n=n+1

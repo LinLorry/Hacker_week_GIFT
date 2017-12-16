@@ -68,7 +68,7 @@ def give_s_class(class_name,db=Connect_MYSQL()):
     c.close()
     return d'''
 
-def g_p_j (class_second_name,db = Connect_MYSQL):
+def g_p_j (class_name,db = Connect_MYSQL()):
     c = db.cursor()
     sql = '''SELECT\
             p.name,\
@@ -79,7 +79,7 @@ def g_p_j (class_second_name,db = Connect_MYSQL):
             id\
             FROM classes_second\
             WHERE name='%s')'''% \
-            (class_second_name)
+            (class_name)
 
     c.execute(sql)
     r = c.fetchall()
@@ -92,7 +92,7 @@ def g_p_j (class_second_name,db = Connect_MYSQL):
             WHERE s.name = '%s' '''%\
             (class_name)
     c.execute(sql)
-    j = c.fetchall()
+    j = c.fetchall()[0]
 
     if j == () :
         return False
@@ -140,7 +140,8 @@ def product_all (product_name,db=Connect_MYSQL()):
     sql = '''SELECT\
             p.name,\
             p.level,\
-            p.price,\
+            p.H_price,\
+            p.L_price,\
             p.title,\
             p.commentaries\
             FROM products p\
