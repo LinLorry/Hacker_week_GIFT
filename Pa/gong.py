@@ -38,12 +38,12 @@ def pai(l):
         if l[n]<aver_p-aver_p/10:
             a=a-1
             continue
-        if L_P>l[n]:
-            l_P=l[n]
+        if L_p>l[n]:
+            L_p=l[n]
         if H_P<l[n]:
-            H_P=l[n]
+            H_p=l[n]
     
-    d = {"H_price":float(pd.group(2)),"L_price":float(pd.group(1))}
+    d = {"H_price":float(H_p),"L_price":float(L_p)}
         
     return d
         
