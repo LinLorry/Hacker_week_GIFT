@@ -16,6 +16,7 @@ def give_all(table_name,db=Connect_MYSQL()):
 
     for s in r:
         print (s)
+    c.close()
     #db.close()
     return r
 
@@ -102,9 +103,9 @@ def g_p_j (class_name,db = Connect_MYSQL()):
     for n in list(range(len(r))):
         key = 'level_'+str(r[n]['level'])
         le[key]=r[n]['name']
-
+    
     d['products']=le
-
+    c.close()
     return d
 
 
@@ -182,7 +183,7 @@ def g_p_id(product_name,db=Connect_MYSQL()):
     if r == ():
         print (r)
     c.close()
-    db.close()
+   
     return r[0]['id']
 
 

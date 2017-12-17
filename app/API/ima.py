@@ -24,8 +24,9 @@ def get_qrcode():
     l_dir = os.listdir(os.path.join('static','Images',data['class_name']))
     n=1
     for di in l_dir:
+        
         url = url_for('static',filename=os.path.join('Images',\
-                data['class_name'],di))
+                data['class_name'],di),_external=True)
         #url = url_for('static',filename=os.path.join(class_name,\
                 #str(int(p_id))+'_'+str(n+1)))
         key='image_'+str(n+1)

@@ -5,7 +5,7 @@ from app.Database import INSERT,SELECT
 import urllib.request
 from Pa import gong,d_all
 
-x=1
+x=0
 f = open('./static/all_url.txt')
 r=1
 while f.readline() != "":
@@ -61,7 +61,7 @@ while f.readline() != "":
                 fi.write(o+'\n')
     else:
         p_id = SELECT.g_p_id(p_n)
-        fi = open (os.d_path.join(d_path,p_n+'.txt'),'r')
+        fi = open (os.path.join(d_path,p_n+'.txt'),'r')
         for url in fi.readlines():
             try :
                 url = url.replace("\n","")
@@ -72,7 +72,10 @@ while f.readline() != "":
             name = str(int(p_id))+'_'+str(n)+hou.group(1)
             path=os.path.join(d_path,name)
             print (path)
-            urllib.request.urlretrieve(url,path)
+            try:
+                urllib.request.urlretrieve(url,path)
+            except:
+                n=n-1
             n=n+1
     
     fi.close()     

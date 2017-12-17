@@ -11,4 +11,4 @@ app.register_blueprint(API_blueprint)
 CORS(app, supports_credentials=True)
 
 if __name__ == '__main__':
-    app.run (host='0.0.0.0',debug=True)
+    app.run (host='0.0.0.0')
