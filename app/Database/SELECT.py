@@ -51,17 +51,14 @@ def give_s_class(class_name,db=dbs):
 def g_p_j (class_name,db = dbs):
     c = db.cursor()
     sql = '''SELECT
-            p.name,
-            p.level,
-            s.j_standard j
-            FROM products p INNER JOIN
-            classes_second s
-            ON p.s_id = s.id and 
-            s.id=
-            (SELECT id
-            FROM classes_second
-            WHERE name ='%s') '''% \
-            (class_name)
+        p.name,
+        p.level
+        FROM products p
+        ON p.s_id =
+        (SELECT id
+        FROM classes_second
+        WHERE name ='%s') '''% \
+        (class_name)
 
     c.execute(sql)
     r = c.fetchall()
@@ -69,11 +66,17 @@ def g_p_j (class_name,db = dbs):
     if r == () :
         return False
 
+    sql='''SELECT j_standard j
+            FROM class_second s
+            WHERE s.name = '%s' '''%\
+            (class_name)
+    
     c.execute(sql)
     j = c.fetchall()[0]
 
     le ={}
-    d = {"j_standard":r['j']}
+
+    d = {"j_standard":j['j']}
     for n in list(range(len(r))):
         key = 'level_'+str(r[n]['level'])
         le[key]=r[n]['name']
