@@ -1,5 +1,6 @@
 from . import Connect_MYSQL,dbs
 
+#爬虫所需要的插入数据的函数
 def INSERT_prouduct(class_id,\
         name,\
         level,\

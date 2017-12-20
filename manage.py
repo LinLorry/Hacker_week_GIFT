@@ -6,7 +6,7 @@ app = Flask (__name__)
 
 #BulePrint
 app.register_blueprint(API_blueprint)
-#kua yu question 
+#解决跨域问题
 CORS(app, supports_credentials=True)
 
 if __name__ == '__main__':

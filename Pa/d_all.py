@@ -78,7 +78,10 @@ class tm:
         s = c.get_text().replace('\n','')
         s = s.replace(' ','')
         c=re.match(r'(.*)valItemInfo\"\:(.*\}\}\})',str(s))
-        jo = json.loads(c.group(2))
+        try:
+            jo = json.loads(c.group(2))
+        except:
+            return []
 
         for n in list(range(len(jo['skuList']))):
             p_all.append(float(jo['skuMap']\

@@ -1,7 +1,7 @@
 import pymysql
 
 def Connect_MYSQL():
-    
+    #数据库信息
     __host = 'localhost'
     __user = 'username'
     __pasw = 'password'
