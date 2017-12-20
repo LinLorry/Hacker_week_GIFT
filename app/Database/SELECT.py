@@ -54,7 +54,7 @@ def g_p_j (class_name,db = dbs):
         p.name,
         p.level
         FROM products p
-        ON p.s_id =
+        WHERE p.s_id =
         (SELECT id
         FROM classes_second
         WHERE name ='%s') '''% \
@@ -67,7 +67,7 @@ def g_p_j (class_name,db = dbs):
         return False
 
     sql='''SELECT j_standard j
-            FROM class_second s
+            FROM classes_second s
             WHERE s.name = '%s' '''%\
             (class_name)
     
