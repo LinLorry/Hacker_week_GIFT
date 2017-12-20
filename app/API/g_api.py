@@ -1,5 +1,5 @@
 import json,random
-from flask import Flask,request,Response,make_response
+from flask import Flask,request,Response,make_response,abort
 from werkzeug.datastructures import Headers
 from . import API
 from ..Database import SELECT
@@ -7,13 +7,16 @@ from ..Database import SELECT
 @API.route('/<class_name>/',methods=['GET'])
 def g_s_classes(class_name):
     r= SELECT.give_s_class(class_name)
-    
+    if (r==False):
+        return abort(404)
     all_c_name = json.dumps(r)
     return all_c_name
 
 @API.route('/<class_first_name>/<class_second_name>/',methods=['GET'])
 def g_c_products(class_first_name,class_second_name):
     r=SELECT.g_p_j(class_second_name)
+    if (r==False):
+        return abort(404)
     
     l = random.randint(1,3)
     m = random.randint(4,6)
@@ -28,5 +31,7 @@ def g_c_products(class_first_name,class_second_name):
 @API.route('/<class_first_name>/<class_second_name>/<product_name>/',methods=['GET'])
 def g_p_all(class_first_name,class_second_name,product_name):
     r = SELECT.product_all(product_name)
+    if (r==False):
+        return abort(404)
     p_all = json.dumps(r)
     return p_all

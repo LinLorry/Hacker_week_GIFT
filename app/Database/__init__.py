@@ -1,6 +1,5 @@
 import pymysql
 
-
 def Connect_MYSQL():
     
     __host = 'localhost'
@@ -14,3 +13,6 @@ def Connect_MYSQL():
             db=__database,\
             cursorclass = pymysql.cursors.DictCursor,\
             charset='utf8')
+
+
+dbs=Connect_MYSQL()

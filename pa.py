@@ -1,13 +1,13 @@
 import pymysql
 import re,os,requests,json
 from bs4 import BeautifulSoup
-from app.Database import INSERT,SELECT
+from app.Database import INSERT,SELECT,Connect_MYSQL
 import urllib.request
 from Pa import gong,d_all
 
-x=0
+x=1
 f = open('./static/all_url.txt')
-r=1
+dbi = Connect_MYSQL()
 while f.readline() != "":
     
     try:
@@ -53,7 +53,7 @@ while f.readline() != "":
         pass
 
     if x==1:
-        INSERT.INSERT_prouduct(c_id,p_n,p_l,p_p['H_price'],p_p['L_price'])
+        INSERT.INSERT_prouduct(c_id,p_n,p_l,p_p['H_price'],p_p['L_price'],db=dbi)
         fi = open (os.path.join(d_path,p_n+'.txt'),'a')
         for p_o in p_a:
             i_a = p_o.i()
@@ -78,6 +78,39 @@ while f.readline() != "":
                 n=n-1
             n=n+1
     
-    fi.close()     
+    fi.close()
 
-f.close()
+dbi.close()
+
+f.seek()
+dbs = Connect_MYSQL()
+while f.readline() != "":
+    
+    try:
+        p_n = f.readline().replace("\n","")
+        p_l = int(f.readline().replace("\n",""))
+        c_n =f.readline().replace("\n","")
+        url =f.readline().replace("\n","")
+    except:
+        break
+    
+    c_id = SELECT.give_c_id(c_n,db=dbs)
+    d_path = os.path.join('.','static','Images',c_n)
+    p_id = SELECT.g_p_id(p_n,db=dbs)
+    fi = open (os.path.join(d_path,p_n+'.txt'),'r')
+    for url in fi.readlines():
+        try :
+            url = url.replace("\n","")
+        except:
+            pass
+        print (url)
+        hou = re.match('.*(\..*)',url)
+        name = str(int(p_id))+'_'+str(n)+hou.group(1)
+        path=os.path.join(d_path,name)
+        print (path)
+        try:
+            urllib.request.urlretrieve(url,path)
+            n=n+1
+        except:
+            pass
+    fi.close()

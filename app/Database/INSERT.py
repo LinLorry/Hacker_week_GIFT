@@ -1,6 +1,4 @@
-from . import Connect_MYSQL
-
-dbs = Connect_MYSQL()
+from . import Connect_MYSQL,dbs
 
 def INSERT_prouduct(class_id,\
         name,\
@@ -11,9 +9,9 @@ def INSERT_prouduct(class_id,\
 
     c = db.cursor()
 
-    sql = '''INSERT products\
-            (s_id,name,level,H_price,L_price)\
-            VALUES\
+    sql = '''INSERT products
+            (s_id,name,level,H_price,L_price)
+            VALUES
             (%d,'%s',%d,%d,%d)'''%\
             (class_id,\
             name,\
