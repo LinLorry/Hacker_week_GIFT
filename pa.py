@@ -53,7 +53,8 @@ while f.readline() != "":
 
     d_path = os.path.join('.','static','Images',c_n)
     try:
-        #为每个二级产品创建一个文件架
+        #为每个二级产品创建一个文件夹
+        os.mkdir(os.path.join('.','static','Images'))
         os.mkdir(d_path)
     except:
         pass
