@@ -119,10 +119,12 @@ while f.readline() != "":
         path=os.path.join(p_path,name)
         print (path)
         try:
-            
             urllib.request.urlretrieve(url,path)
             n=n+1
         except:
             pass
+
+        if n >=30:
+            break
 
     fi.close()
