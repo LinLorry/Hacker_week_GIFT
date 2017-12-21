@@ -5,6 +5,10 @@ from Pa import gong,d_all
 
 f = open('./static/all_url.txt')
 dbi = Connect_MYSQL()
+try:
+    os.mkdir(os.path.join('.','static','Images'))
+except:
+    pass
 
 #爬下商品的数据以及图片地址
 while f.readline() != "":
@@ -40,7 +44,9 @@ while f.readline() != "":
     for p_o in p_a:
         print ("----------------------------------------")
 
-        if type(p_o.p()) == type(dict()):
+        if po.p() == False:
+            pass
+        elif type(p_o.p()) == type(dict()):
             print ("H_price:%f\nL_price:%f"%(p_o.p()['H_price'],p_o.p()['L_price']))
             p_p.append(p_o.p()['H_price'])
             p_p.append(p_o.p()['L_price'])
@@ -54,7 +60,6 @@ while f.readline() != "":
     d_path = os.path.join('.','static','Images',c_n)
     try:
         #为每个二级产品创建一个文件夹
-        os.mkdir(os.path.join('.','static','Images'))
         os.mkdir(d_path)
     except:
         pass

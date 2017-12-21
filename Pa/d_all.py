@@ -81,7 +81,7 @@ class tm:
         try:
             jo = json.loads(c.group(2))
         except:
-            return []
+            return False
 
         for n in list(range(len(jo['skuList']))):
             p_all.append(float(jo['skuMap']\
