@@ -12,8 +12,7 @@ def give_all(table_name,db=dbs):
         dbs =Connect_MYSQL()
         db = db
     c = db.cursor()
-dbs =Connect_MYSQL()
-        db = db
+
     sql = ("SELECT * FROM %s" % (table_name))
     c.execute (sql)
     r = c.fetchall()
