@@ -44,7 +44,7 @@ while f.readline() != "":
     for p_o in p_a:
         print ("----------------------------------------")
 
-        if po.p() == False:
+        if p_o.p() == False:
             pass
         elif type(p_o.p()) == type(dict()):
             print ("H_price:%f\nL_price:%f"%(p_o.p()['H_price'],p_o.p()['L_price']))
