@@ -102,7 +102,7 @@ while f.readline() != "":
     except:
         pass
     d_path = os.path.join('.','static','Images',c_n)
-    p_path = os.path.join('.','static','Images',c_n,str(p_id)
+    p_path = os.path.join('.','static','Images',c_n,str(p_id))
 
     #打开存放图片地址的文件
     fi = open (os.path.join(d_path,p_n+'.txt'),'r')
