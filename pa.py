@@ -98,7 +98,7 @@ while f.readline() != "":
     c_id = SELECT.give_c_id(c_n,db=dbs)
     p_id = SELECT.g_p_id(p_n,db=dbs)
     try:
-        os.mkdir(os.path.join('.','static','Images',c_n,p_id))
+        os.mkdir(os.path.join('.','static','Images',c_n,str(p_id)))
     except:
         pass
     d_path = os.path.join('.','static','Images',c_n)
