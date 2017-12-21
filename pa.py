@@ -65,7 +65,10 @@ while f.readline() != "":
         pass
 
     #插入产品数据
-    INSERT.INSERT_prouduct(c_id,p_n,p_l,p_p['H_price'],p_p['L_price'],db=dbi)
+    try:
+        SELECT.g_p_id(p_n,db=dbs)
+    except:            
+        INSERT.INSERT_prouduct(c_id,p_n,p_l,p_p['H_price'],p_p['L_price'],db=dbi)
     #打开一个文件存放图片地址
     fi = open (os.path.join(d_path,p_n+'.txt'),'a')
     for p_o in p_a:
