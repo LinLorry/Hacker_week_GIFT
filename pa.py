@@ -89,7 +89,12 @@ while f.readline() != "":
     #获取产品二级id和产品id
     c_id = SELECT.give_c_id(c_n,db=dbs)
     p_id = SELECT.g_p_id(p_n,db=dbs)
+    try:
+        os.mkdir(os.path.join('.','static','Images',c_n,p_id))
+    except:
+        pass
     d_path = os.path.join('.','static','Images',c_n)
+    p_path = os.path.join('.','static','Images',c_n,p_id)
 
     #打开存放图片地址的文件
     fi = open (os.path.join(d_path,p_n+'.txt'),'r')
@@ -105,8 +110,8 @@ while f.readline() != "":
         
         print (url)
         hou = re.match('.*(\..*)',url)
-        name = str(int(p_id))+'_'+str(n)+hou.group(1)
-        path=os.path.join(d_path,name)
+        name = str(str(n)+hou.group(1))
+        path=os.path.join(p_path,name)
         print (path)
         try:
             

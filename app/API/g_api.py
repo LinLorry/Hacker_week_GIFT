@@ -31,10 +31,19 @@ def g_c_products(class_first_name,class_second_name):
     l = random.randint(1,3)
     m = random.randint(4,6)
     t = random.randint(7,9)
-    r['products']['level_low']=r['products']['level_'+str(l)]
-    r['products']['level_middle']=r['products']['level_'+str(m)]
-    r['products']['level_top']=r['products']['level_'+str(t)]
+    
+    while (True):
+        try:
+            r['products']['level_low']=r['products']['level_'+str(l)]
+            r['products']['level_middle']=r['products']['level_'+str(m)]
+            r['products']['level_top']=r['products']['level_'+str(t)]
+            break
+        except:
+            l = random.randint(1,3)
+            m = random.randint(4,6)
+            t = random.randint(7,9)
 
+    
     all_p_name = json.dumps(r)
     return all_p_name
 
