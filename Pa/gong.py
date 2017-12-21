@@ -54,7 +54,10 @@ def p_all(p_url):
         print ('--------------------------------------')
         print ('url:%s'%url)
 
-        r = requests.get (url)
+        try:
+            r = requests.get (url)
+        except:
+            continue
         b = BeautifulSoup (r.text,'html.parser')
 
         pd = pand_u(url)
