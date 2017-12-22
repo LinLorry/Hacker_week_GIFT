@@ -297,22 +297,18 @@ body,html{
   position: absolute;
   height: 1.57333rem;
   width:10rem;
-  left: 0;
   bottom: 0;
-
 }
 
 .bottom{
   position: absolute;
-  margin-right: 0.2rem;
   width: 10rem;
-  left: -0.36rem;
+  right: 4.68rem;
   bottom: 0;
   height: 1.57333rem;
 }
 
 .jfont{
-  height: 6.08rem;
   color: gray;
   font-size: 0.35rem;
   margin-top: 0.5rem;
