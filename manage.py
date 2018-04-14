@@ -1,13 +1,10 @@
-from flask import Flask
-from app.API import API as API_blueprint
-from flask_cors import *
+# !/bin/python3
+# -*- coding:utf8 -*-
 
-app = Flask (__name__)
+from project import create_app
 
-#BulePrint
-app.register_blueprint(API_blueprint)
-#解决跨域问题
-CORS(app, supports_credentials=True)
+app = create_app("Test")
 
 if __name__ == '__main__':
-    app.run (debug=True)
+    app.run()
+
