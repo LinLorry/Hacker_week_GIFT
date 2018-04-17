@@ -1,17 +1,19 @@
 from urllib import parse
 from flask import request,jsonify
 from flask_restful import Resource
-from project import Models
+import project
 
-class get_first_classes(Resource):
+class Get_first_classes(Resource):
+    url = "/class_first"
     def get(self):
-        all_classes = Models.Class_first.query.all()
+        all_classes = project.Models.Class_first.query.all()
         return jsonify(status = 1)
 
     def post(self):
         pass
 
-class get_second_classes(Resource):
+class Get_second_classes(Resource):
+    url = "/class_second"
     def get(self):
         re = request.query_string.decode('utf-8')
         re = parse.parse_qs(re)

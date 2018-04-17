@@ -3,22 +3,32 @@ from os.path import abspath, join
 
 def datapath(path):
     """相对于data目录的绝对路径"""
-    return abspath(join("../data", path))
+    return abspath(join("./log", path))
 
-class Test:
+class Config:
+    @staticmethod
+    def init_app(app):
+        pass
+
+class Test(Config):
     DEBUG = True
     DEBUG_LOG = datapath("debug.log")
     ERROR_LOG = datapath("error.log")
 
-    SQLALCHEMY_DATABASE_URL = r'mysql://username:password@hostname/databse'
-    SQLALCHEMY_TACK_MODIFICATIONS = True
-class Product:
-    DEBUG = True
+    SQLALCHEMY_DATABASE_URI = os.environ.get("GIFT_TEST_DATABASE_URI")
+    SQLALCHEMY_TRACK_MODIFICATIONS = True
+
+    API_URL = "/test_api"
+
+class Product(Config):
+    DEBUG = False
     DEBUG_LOG = datapath("debug.log")
     ERROR_LOG = datapath("error.log")
 
-    SQLALCHEMY_DATABASE_URL = os.environ.get("GIFT_DATABASE_URL")
-    SQLALCHEMY_TACK_MODIFICATIONS = True
+    SQLALCHEMY_DATABASE_URI = os.environ.get("GIFT_DATABASE_URI")
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
+
+    API_URL = "/api"
 
 configs = {
     "Test":Test,
